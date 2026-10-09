@@ -1,6 +1,6 @@
 import logging
 import os
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, HTTPException
 from time import perf_counter
 
 logging.basicConfig(level=logging.INFO)
@@ -28,11 +28,12 @@ def live():
 
 @app.get("/api/calculate")
 def calculate(value: int, divisor: int = 1):
+    if divisor == 0:
+        raise HTTPException(status_code=400, detail="El divisor no puede ser cero.")
     return {"result": value / divisor}
 
 @app.get("/api/orders/{order_id}")
 def order(order_id: int):
     if order_id == 13:
-        data = None
-        return {"id": data["id"], "status": "processed"}
+        raise HTTPException(status_code=404, detail="Orden no encontrada o datos inválidos.")
     return {"id": order_id, "status": "processed"}
