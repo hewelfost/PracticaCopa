@@ -1,0 +1,97 @@
+{
+  "info": {
+    "name": "Copa 2026 CTF Local",
+    "_postman_id": "copa-2026-local-ctf",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Live",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health/live"
+      }
+    },
+    {
+      "name": "Health Ready",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health/ready"
+      }
+    },
+    {
+      "name": "List Incidents",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/incidents"
+      }
+    },
+    {
+      "name": "Get Missing Incident",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/incidents/9999"
+      }
+    },
+    {
+      "name": "Create Incident",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"DNS falla\", \"description\": \"No resuelve nombres\", \"priority\": \"high\"}"
+        },
+        "url": "{{baseUrl}}/api/incidents"
+      }
+    },
+    {
+      "name": "Private Summary",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-API-Key",
+            "value": "copa2026-lab"
+          }
+        ],
+        "url": "{{baseUrl}}/api/private/summary"
+      }
+    },
+    {
+      "name": "Invalid Echo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{}"
+        },
+        "url": "{{baseUrl}}/api/private/echo"
+      }
+    },
+    {
+      "name": "Report 13",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/reports/13"
+      }
+    }
+  ]
+}
